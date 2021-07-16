@@ -35,8 +35,9 @@ jobs:
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        touch work.txt
         git pull origin main
+        touch work.txt
+        git add work.txt
         git commit -m "Update config and data - ci skip" -a
         
     - name: Push changes
