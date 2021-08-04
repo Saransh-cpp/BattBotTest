@@ -32,7 +32,7 @@ jobs:
         git pull origin main
         touch work.txt
         git add work.txt
-        git commit -m "Update config and data - skip ci" -a
+        git commit --allow-empty -m "Update config and data - skip ci" -a
         
     - name: Push changes
       if: github.ref == 'refs/heads/main'
