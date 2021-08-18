@@ -43,7 +43,7 @@ Some quick links -
  - **Merged pull requests** - label - [GSOC21: Twitter Bot](https://github.com/pybamm-team/BattBot/pulls?q=is%3Apr+is%3Aclosed+label%3A%22GSOC21%3A+Twitter+Bot%22) </br>
  - **Closed issues** - label - [GSOC21: Twitter Bot](https://github.com/pybamm-team/BattBot/issues?q=is%3Aissue+is%3Aclosed+label%3A%22GSOC21%3A+Twitter+Bot%22) </br>
 
-Below are all the pull requests (with some details) that were made during Google Summer of Code 2021. The number of pull requests may seem greater than other GSoC projects as the BattBot repository was created from scratch. For further reference, a good amount of documentation, available in the [README.md](https://github.com/pybamm-team/BattBot#readme) and [CONTRIBUTING.md](https://github.com/pybamm-team/BattBot/blob/main/CONTRIBUTING.md) files, has also been added to the bot's repository.
+Below are most of the pull requests (I decided not to add some small pull requests) that were made during Google Summer of Code 2021. The number of pull requests may seem greater than other GSoC projects as the BattBot repository was created from scratch. For further reference, a good amount of documentation, available in the [README.md](https://github.com/pybamm-team/BattBot#readme) and [CONTRIBUTING.md](https://github.com/pybamm-team/BattBot/blob/main/CONTRIBUTING.md) files, has also been added to the bot's repository.
 
  - **Cleaning up the already written code** - I created a simple working prototype of the bot before GSoC, these PRs were made to add and clean up that code (which acted as a base for the bot), thus making it ready for test-driven development. After these PRs were merged, the bot started tweeting some simple plots using GitHub Actions (Note: In the starting, the bot was hosted on my Twitter account and this repository was on my GitHub account). </br> </br>
 **Relevant blog post** - [Community bonding](https://whiteviolin.medium.com/my-gsoc21-experience-community-bonding-f31ea7bb624c), [Week 1-2](https://whiteviolin.medium.com/gsoc21-week-1-and-2-twitter-api-github-actions-and-sensitive-parameters-9d7e79de183a) </br>
@@ -90,14 +90,29 @@ Below are all the pull requests (with some details) that were made during Google
 [#41](https://github.com/pybamm-team/BattBot/pull/41) - Add all the required files for `Heroku`, and added the `Reply` class. </br>
 [#48](https://github.com/pybamm-team/BattBot/pull/48) - Refactor randomness out of the codebase to a single function, and transform the `comparison_generator` function to a class (`ComparisonGenerator`). </br>
 [#58](https://github.com/pybamm-team/BattBot/pull/58) - Create a super class for `Tweet` and `reply`, and add `"model comparison"` replies for testing the added code. </br> </br>
- - **Adding `print_name` to functional parameters and fixing a major bug** - The `FunctionLike` class missed a `__str__` method and it would have been cleaner to print the symbol of a function in latex in the legend of the GIF. The Heroku deployment was also going out of sync of GitHub Actions deployment in the terms of `last_seen_id` which, combined with Heroku's [ephemeral filesystem](https://devcenter.heroku.com/articles/active-storage-on-heroku#ephemeral-disk), created an infinite reply bug. </br> </br>
+ - **Adding `print_name` to functional parameters and fixing a major bug** - The `FunctionLike` class missed a `__str__` method and it would have been cleaner to print the symbol of a function in latex in the legend of the GIF. The Heroku deployment was also going out of sync with GitHub Actions deployment in the terms of `last_seen_id` which, combined with Heroku's [ephemeral filesystem](https://devcenter.heroku.com/articles/active-storage-on-heroku#ephemeral-disk), created an infinite reply bug. </br> </br>
 **Relevant blog post** - [Week 7-8](https://whiteviolin.medium.com/gsoc21-week-7-and-8-setting-up-the-reply-functionality-be5ac6897a9d) </br>
 [#51](https://github.com/pybamm-team/BattBot/pull/51) - Add the `sync_last_seen_id` function which now runs on GitHub Actions. </br>
 [#56](https://github.com/pybamm-team/BattBot/pull/56) - Add the `__str__` method and `print_name` for functional parameters. </br> </br>
- - **Adding more reply types and varying `C-rate` and `"Ambient temperature [K]"` always** - Now that the Heroku deploymment was working fine, it was time to add more reply types. To make things more random, `C-rate` and `"Ambient temperature [K]"` were varied in every plot. </br> </br>
+ - **Adding more reply types and varying `C-rate` and `"Ambient temperature [K]"` always** - Now that the Heroku deployment was working fine, it was time to add more reply types. To make things more random, `C-rate` and `"Ambient temperature [K]"` were varied in every plot. </br> </br>
 [#60](https://github.com/pybamm-team/BattBot/pull/60) - Allow users to pass experiments in their requests. </br>
 [#61](https://github.com/pybamm-team/BattBot/pull/61) - Vary `C-rate` and `"Ambient temperature [K]"` always. </br>
-[#63](https://github.com/pybamm-team/BattBot/pull/63) - Allow users to request for parameter comparisons. </br> </br>
- - **Saving memory on Heroku and degradation comparisons** - The degradation comparisons were finally working without any errors with `Mohtat2020` chemistry and `Single Particle Model`, hence, the branch was finally merged. Heroku deployment was not working because of memory issues which was also solved. </br> </br>
+[#63](https://github.com/pybamm-team/BattBot/pull/63) - Allow users to request parameter comparisons. </br> </br>
+ - **Saving memory on Heroku and degradation comparisons** - The degradation comparisons were finally working without any errors with `Mohtat2020` chemistry and `Single Particle Model`, hence, the branch was finally merged. Heroku deployment was not working because of memory issues which were also solved. </br> </br>
 [#36](https://github.com/pybamm-team/BattBot/pull/36) - Implement degradation comparisons. </br>
 [#64](https://github.com/pybamm-team/BattBot/pull/64) - Fix Heroku deployment. </br> </br>
+
+## Work left
+
+Almost all of the work has been done, proper documentation and tests have also been added, and the bot has evolved beautifully with time. The only thing that is somewhat incomplete is the degradation comparison. The branch, with proper implementation, has been merged but the number of random configurations that the bot can generate is very less. I'll be adding more configurations (just adding them to a list of already existing items, the code will take care of combining them randomly) as soon as some small bugs are fixed in PyBaMMM's degradation mechanisms. With this, I'll also look forward to adding degradation comparisons to the replying functionality.
+
+## Future work
+ - Maintaining the bot.
+ - Implementing some of the bot’s functionalities in PyBaMM (Plotting summary variables, comparing summary variables ,etc.).
+ - Working on and closing some open issues in PyBaMM.
+ - Implementing more plots and replies in the bot.
+ - Adding more degradation mechanisms to the bot.
+
+## Some final words
+
+It has been an absolute delight to work with PyBaMM's team, and the last 3-4 months have been amazing! In such a short period of time, I learned a lot of stuff, stuff ranging from clean code practices to battery physics to collaborating over code, and most of this was possible because of my mentors. The community has always been very open, inclusive, and ready to solve my doubts. This was the best summer I could ask for and I am really looking forward to making more contributions to PyBaMM:)
